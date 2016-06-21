@@ -1,2 +1,2 @@
 # recognise
-recognise anythiny
+recognise anything
