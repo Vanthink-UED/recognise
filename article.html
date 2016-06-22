@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>题目识别</title>
+  <style type="text/css">
+  .wysihtml5-sandbox {
+    border: 1px solid #ccc !important;
+  }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <div class="row-fluid">
+
+      <div class="tab-content">
+       <textarea style="width:100%" rows="16" id="text-area"></textarea>
+          </div>
+    <button id="check-textarea" class="btn-primary btn-block">
+            开始识别
+    </button>
+    <div id="preview_1">
+      
+    </div>
+    <div id="preview_2">
+      
+    </div>
+    </div>
+
+<footer>
+</footer>
+
+</div> <!-- /container -->
+<script src="./lib/jquery-1.11.0.min.js"></script>
+<script>
+(function() {
+  $('#check-textarea').click(function(event) {
+    var content = $('#text-area').val(); 
+    var end_content = start(content);
+    $('#preview_1').html(start(content));
+  });
+  function start(content){
+    console.log(content);
+    var match = new Array();
+    match = content.match(/\s[\s\(_（]+\d+[\s\)_）]+|_[_0-9\(\)]+|\d+[\.\s]*_+|\s[\s]+\s|-+\W*\d\W*-+|\d+[、\s]*_+/)
+  
+    if(match){
+      var content = content.replace(/\s[\s\(_（]+\d+[\s\)_）]+|_[_0-9\(\)]+|\d+[\.\s]*_+|\s[\s]+\s|-+\W*\d\W*-+|\d+[、\s]*_+/,'<font color="red">--题目--</font>');
+      return start(content);
+    }else{
+      return content;
+    }
+  }
+})();
+</script>
+
+
+</body></html>
